@@ -23,6 +23,15 @@ public class GameController : MonoBehaviour
     public GameObject noteSheet;
     public GameObject leftkey;
     public Vector3 leftnotepos;
+    public GameObject upkey;
+    public Vector3 upnotepos;
+    public GameObject downkey;
+    public Vector3 downnotepos;
+    public GameObject rightkey;
+    public Vector3 rightnotepos;
+
+
+
 
     public GameObject scoretext;
     public GameObject combotext;
@@ -56,8 +65,29 @@ public class GameController : MonoBehaviour
         {
             
             yield return new WaitForSeconds(beatScro.bpm/2);
-            GameObject newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
-            newNote.transform.position = leftnotepos;
+            GameObject newNote = null;
+            int random = Random.Range(0, 4);
+            switch (random)
+            {
+                case 0:
+                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = leftnotepos;
+                    break;
+                case 1:
+                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = upnotepos;
+                    break;
+                case 2:
+                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = downnotepos;
+                    break;
+                case 3:
+                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = rightnotepos;
+                    break;
+
+            }
+            
         }
         
 
