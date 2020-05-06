@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    public bool canpressed;
+    private bool canpressed;
     public KeyCode keyToPressed;
     void Start()
     {
@@ -18,7 +18,9 @@ public class Note : MonoBehaviour
         {
             if (canpressed)
             {
-                gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
+
+                GameController.instance.NoteHit();
             }
 
         }
@@ -37,6 +39,7 @@ public class Note : MonoBehaviour
         if (other.tag == "Activator")
         {
             canpressed = false;
+            GameController.instance.NoteMiss();
         }
     }
 }

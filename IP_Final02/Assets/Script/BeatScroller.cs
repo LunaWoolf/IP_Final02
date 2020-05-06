@@ -18,10 +18,7 @@ public class BeatScroller : MonoBehaviour
     {
         if (!start)
         {
-            if (Input.anyKeyDown)
-            {
-                start = true;
-            }
+           
         }
         else
         {
