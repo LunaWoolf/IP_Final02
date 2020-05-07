@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Activator
+  - TurnLeftPoint
+  - Turnto0
+  - TurnRightPoint
+  - TurnRightPint
   layers:
   - Default
   - TransparentFX

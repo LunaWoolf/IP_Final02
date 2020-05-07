@@ -14,6 +14,8 @@ public class TrackGenerator : MonoBehaviour
 
     public int spawnamount = 10;
 
+    public TravelObject travelObject;
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -41,6 +43,7 @@ public class TrackGenerator : MonoBehaviour
 
         GameObject objectfromTrack = curTrack.Tracks[0];
         Instantiate(objectfromTrack, spawnPos + spawnOrigin, Quaternion.identity);
+        travelObject.desList.Add(spawnPos + spawnOrigin);
         previousTrack = curTrack;
 
     }
