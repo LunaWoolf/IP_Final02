@@ -18,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Activators
+  - Note
   - 
   - 
   - 
@@ -43,6 +43,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Activators
+    uniqueID: 2850121613
+    locked: 0
+  - name: Note
+    uniqueID: 2553059975
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
