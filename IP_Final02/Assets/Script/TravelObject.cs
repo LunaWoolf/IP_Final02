@@ -9,6 +9,7 @@ public class TravelObject : MonoBehaviour
     public Vector3 curDestination;
     public float speed;
     public float startTime;
+    public TrackGenerator trackGenerattor;
  
 
     void Start()
@@ -37,43 +38,32 @@ public class TravelObject : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, curDestination, Time.deltaTime * speed);
-
-            //transform.position = Vector3.Lerp(transform.position, curDestination, Time.deltaTime * speed);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(Rotate(Vector3.up * -90, 0.8f));
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            StartCoroutine(Rotate(Vector3.up * 90, 0.8f));
-        }
+     
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enter");
+        
         if (other.tag == "TurnRightPoint")
         {
+            trackGenerattor.PickSpawnTrack();
             StartCoroutine(Rotate(Vector3.up * 90, 0.8f));
         }
 
         if (other.tag == "TurnLeftPoint")
         {
-            
+            trackGenerattor.PickSpawnTrack();
             StartCoroutine(Rotate(Vector3.up * -90, 0.8f));
         }
-
-        if (other.tag == "TurnTo0")
-        {
-            StartCoroutine(Rotate(Vector3.up * -90, 0.8f));
-        }
+        
+       
     }
 
     IEnumerator Rotate(Vector3 angle, float time)
     {
+        Debug.Log("rotate");
         Quaternion curAngle = transform.rotation;
 
         Quaternion toAngle = Quaternion.Euler(transform.eulerAngles + angle);

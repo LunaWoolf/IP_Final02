@@ -41,10 +41,14 @@ public class GameController : MonoBehaviour
     public GameObject scoretext;
     public GameObject combotext;
 
+    public SceneManage sm;
+
+    int level = 2;
+
     void Start()
     {
         instance = this;
-
+        
     }
 
     
@@ -58,7 +62,15 @@ public class GameController : MonoBehaviour
                 beatScro.start = true;
 
                 theMusic.Play();
-                StartCoroutine(GenerateNote());
+                if (level == 0)
+                {
+                    StartCoroutine(GenerateNoteEasy());
+                }
+                else
+                {
+                    StartCoroutine(GenerateNoteHard());
+                }
+               
             }
         }
 
@@ -66,7 +78,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    private IEnumerator GenerateNote()
+    private IEnumerator GenerateNoteEasy()
     {
         while (start)
         {
@@ -95,8 +107,59 @@ public class GameController : MonoBehaviour
 
             }
             
+        } 
+
+    }
+
+    private IEnumerator GenerateNoteHard()
+    {
+        while (start)
+        {
+
+            yield return new WaitForSeconds(beatScro.bpm / 2);
+            GameObject newNote = null;
+            int random = Random.Range(0, 5);
+            switch (random)
+            {
+                case 0:
+                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = leftnotepos;
+                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = upnotepos;
+                    break;
+                case 1:
+                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = leftnotepos;
+                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = downnotepos;
+                    break;
+                case 2:
+                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = leftnotepos;
+                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = rightnotepos;
+                    break;
+                case 3:
+                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = upnotepos;
+                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = downnotepos;
+                    break;
+                case 4:
+                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = upnotepos;
+                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = rightnotepos;
+                    break;
+                case 5:
+                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = downnotepos;
+                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
+                    newNote.transform.position = rightnotepos;
+                    break;
+            }
+
         }
-        
 
     }
 
@@ -119,6 +182,7 @@ public class GameController : MonoBehaviour
 
     public void NoteMiss()
     {
+        Debug.Log("Miss");
         //curCombo = 0;
     }
 }

@@ -6,19 +6,14 @@ public class Note : MonoBehaviour
 {
     private bool canpressed;
     public KeyCode keyToPressed;
-    void Start()
-    {
-        
-    }
 
-    
     void Update()
     {
         if (Input.GetKeyDown(keyToPressed))
         {
             if (canpressed)
             {
-                this.gameObject.SetActive(false);
+                Destroy(this.gameObject);
 
                 GameController.instance.NoteHit();
             }
@@ -26,7 +21,7 @@ public class Note : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Activator")
         {
@@ -34,11 +29,12 @@ public class Note : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Activator")
         {
             canpressed = false;
+            Destroy(this.gameObject);
             GameController.instance.NoteMiss();
         }
     }

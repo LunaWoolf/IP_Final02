@@ -6,6 +6,7 @@ public class TrackGenerator : MonoBehaviour
 {
     public Track[] tracks;
     public Track firstTrack;
+    public List<GameObject> trackInScene;
 
     private Track previousTrack;
 
@@ -23,6 +24,13 @@ public class TrackGenerator : MonoBehaviour
             PickSpawnTrack();
         }
 
+        if (trackInScene.Count > 11)
+        {
+            GameObject temp = trackInScene[0];
+            trackInScene.RemoveAt(0);
+            Destroy(temp);
+        }
+
     }
 
 
@@ -37,12 +45,13 @@ public class TrackGenerator : MonoBehaviour
         
     }
 
-    void PickSpawnTrack()
+    public void PickSpawnTrack()
     {
         Track curTrack = PickNextTrack();
 
         GameObject objectfromTrack = curTrack.Tracks[0];
-        Instantiate(objectfromTrack, spawnPos + spawnOrigin, Quaternion.identity);
+        GameObject temp = Instantiate(objectfromTrack, spawnPos + spawnOrigin, Quaternion.identity);
+        trackInScene.Add(temp);
         travelObject.desList.Add(spawnPos + spawnOrigin);
         previousTrack = curTrack;
 
