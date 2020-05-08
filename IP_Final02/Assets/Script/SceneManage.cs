@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneManage : MonoBehaviour
 {
-    public Music[] musicList;
-
     public static SceneManage Instance = null;
 
+    public Animator anim;
+    public Music[] musicList;
     public Music selectMusic;
 
     public int level;
+    public int score;
+    public int combo;
 
     void Awake()
     {
@@ -25,26 +27,55 @@ public class SceneManage : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
-    void Start()
+    public void ToStartScene()
     {
+        StartCoroutine(TransStartScene());
+        //SceneManager.LoadScene(0);
+    }
 
-
+    public void ToGameScene()
+    {
+        StartCoroutine(TransGameScene());
+        //SceneManager.LoadScene(1);
     }
 
 
-    void Update()
+    public void ToEndScene()
     {
+        StartCoroutine(TransEndScene());
+        //SceneManager.LoadScene(2);
+    }
+
+    IEnumerator TransStartScene()
+    {
+        anim.SetTrigger("trans");
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(0);
 
     }
 
-    IEnumerator ToGameScene()
+    IEnumerator TransGameScene()
     {
-        //fadeAnim.SetInteger("FadeState", 2);
-        yield return new WaitForSeconds(1f);
+        anim.SetTrigger("trans");
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(1);
+        
     }
+
+    IEnumerator TransEndScene()
+    {
+        anim.SetTrigger("trans");
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(2);
+
+    }
+
+ 
+
+
 
 
 }

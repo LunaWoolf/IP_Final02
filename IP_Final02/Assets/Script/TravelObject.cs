@@ -8,18 +8,10 @@ public class TravelObject : MonoBehaviour
     public int curDesIndex = -1;
     public Vector3 curDestination;
     public float speed;
-    public float startTime;
     public TrackGenerator trackGenerattor;
- 
+    public GameController gc;
 
-    void Start()
-    {
-       
-        startTime = Time.time;
-        
-    }
-
-    void Update()
+    void FixedUpdate()
     {
         if (desList.Count > 1 && curDesIndex < 0)
         {
@@ -37,6 +29,7 @@ public class TravelObject : MonoBehaviour
         }
         else
         {
+            if(gc.start)
             transform.position = Vector3.MoveTowards(transform.position, curDestination, Time.deltaTime * speed);
         }
 

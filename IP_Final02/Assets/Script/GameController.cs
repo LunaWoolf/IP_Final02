@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public AudioSource theMusic;
-
+    public Animator anim;
     public bool start;
 
     public BeatScroller beatScro;
@@ -15,10 +15,8 @@ public class GameController : MonoBehaviour
 
     public int curScore;
     public int scorePreNote = 100;
-
-    public int curCombo = 1;
-    public int comboTracker;
-    public int[] combo;
+    public int curCombo = 0;
+    public int highestCombo = 0;
 
     public GameObject noteSheet;
     public GameObject leftkey;
@@ -41,40 +39,73 @@ public class GameController : MonoBehaviour
     public GameObject scoretext;
     public GameObject combotext;
 
-    public SceneManage sm;
+    SceneManage sm;
 
-    int level = 2;
+    int level;
 
     void Start()
     {
         instance = this;
-        
+		sm = FindObjectOfType<SceneManage>();
+        sm.anim = anim;
+        theMusic.clip = sm.selectMusic.musicClip;
+        level = sm.level;
+	}
+
+    void FixedUpdate()
+    {
+        NotepositionUpdate();
     }
 
-    
     void Update()
     {
+
         if (!start)
         {
-            if (Input.anyKeyDown)
-            {
-                start = true;
-                beatScro.start = true;
+			if (Input.anyKeyDown)
+			{
+				start = true;
+				beatScro.start = true;
 
-                theMusic.Play();
-                if (level == 0)
+				theMusic.Play();
+				if (level == 0)
+				{
+					StartCoroutine(GenerateNoteEasy());
+				}
+				else
+				{
+					StartCoroutine(GenerateNoteHard());
+				}
+
+			}
+        }
+        else
+        {
+            RenderSettings.skybox.SetFloat("_AtmosphereThickness", Mathf.Sin(Time.time * Mathf.Deg2Rad * 100 * 0.2f) + 2f);
+
+            if (!theMusic.isPlaying)
+            {
+                if (curCombo > highestCombo)
                 {
-                    StartCoroutine(GenerateNoteEasy());
+                    highestCombo = curCombo;
                 }
-                else
-                {
-                    StartCoroutine(GenerateNoteHard());
-                }
-               
+                curScore = sm.score;
+                highestCombo = sm.combo;
+                sm.ToEndScene();
             }
+
         }
 
-        NotepositionUpdate();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (curCombo > highestCombo)
+            {
+                highestCombo = curCombo;
+            }
+            sm.score = curScore;
+            sm.combo = highestCombo;
+            sm.ToEndScene();
+        }
 
     }
 
@@ -176,13 +207,17 @@ public class GameController : MonoBehaviour
     {
         curCombo++;
         curScore += scorePreNote * curCombo;
-        scoretext.GetComponent<Text>().text = "" + curScore;
-        combotext.GetComponent<Text>().text = "" + curCombo;
+        scoretext.GetComponent<Text>().text = "Score: " + curScore;
+        combotext.GetComponent<Text>().text = "Combo: " + curCombo;
     }
 
     public void NoteMiss()
     {
-        Debug.Log("Miss");
-        //curCombo = 0;
+        if (curCombo > highestCombo)
+        {
+            highestCombo = curCombo;
+        }
+        curCombo = 0;
+        combotext.GetComponent<Text>().text = "Combo: " + curCombo;
     }
 }

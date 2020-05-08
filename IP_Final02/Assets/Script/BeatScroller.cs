@@ -7,20 +7,25 @@ public class BeatScroller : MonoBehaviour
     public float bpm;
 
     public bool start;
-    
+    public SceneManage sm;
+
     void Start()
     {
+        sm = FindObjectOfType<SceneManage>();
+        bpm = sm.selectMusic.bpm;
         bpm = bpm / 60;
+       
+        
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
         if (!start)
         {
-           
+           //do nothing
         }
-        else
+        else 
         {
             transform.position -= new Vector3(0, bpm * Time.deltaTime, 0);
         }

@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyToPressed: 276
+  noteType: L
+  activator: {fileID: 0}
 --- !u!65 &2259589972474657526
 BoxCollider:
   m_ObjectHideFlags: 0

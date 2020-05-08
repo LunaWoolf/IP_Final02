@@ -6,6 +6,19 @@ public class Note : MonoBehaviour
 {
     private bool canpressed;
     public KeyCode keyToPressed;
+    public string noteType;
+    public GameObject activator;
+
+    void Start()
+    {
+        string temp = "Activator_" + noteType;
+        activator = GameObject.Find(temp);
+    }
+
+    void FixedUpdate()
+    {
+        transform.position = new Vector3(activator.transform.position.x, transform.position.y, transform.position.z);
+    }
 
     void Update()
     {
