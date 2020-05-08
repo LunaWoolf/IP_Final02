@@ -31,7 +31,12 @@ public class GameController : MonoBehaviour
     public Vector3 rightnotepos;
 
 
+    public GameObject leftActivaor;
+    public GameObject upActivaor;
+    public GameObject downActivaor;
+    public GameObject rightActivaor;
 
+    public Vector3 noteGenerateHeight;
 
     public GameObject scoretext;
     public GameObject combotext;
@@ -56,7 +61,9 @@ public class GameController : MonoBehaviour
                 StartCoroutine(GenerateNote());
             }
         }
-       
+
+        NotepositionUpdate();
+
     }
 
     private IEnumerator GenerateNote()
@@ -92,6 +99,16 @@ public class GameController : MonoBehaviour
         
 
     }
+
+    public void NotepositionUpdate()
+    {
+        leftnotepos = leftActivaor.transform.position + noteGenerateHeight;
+        upnotepos = upActivaor.transform.position + noteGenerateHeight;
+        downnotepos = downActivaor.transform.position + noteGenerateHeight;
+        rightnotepos = rightActivaor.transform.position + noteGenerateHeight;
+    }
+
+
     public void NoteHit()
     {
         curCombo++;
