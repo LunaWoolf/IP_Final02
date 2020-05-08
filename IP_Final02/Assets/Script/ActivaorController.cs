@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This is the script for the Activator
 public class ActivaorController : MonoBehaviour
 {
     public SpriteRenderer sprrender;
