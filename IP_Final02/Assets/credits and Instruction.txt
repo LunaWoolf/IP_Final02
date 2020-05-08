@@ -15,3 +15,6 @@ This is a rhythm game. The original idea is to make something that is playful an
 How to Play:
 
 Press the according arrow key when the arrows fall to the pink little box's area. The traveling of the camera has noting to do with the input, it's self-pathfinding. The only purpose of it is to make it looks beautiful and dynamtic. (If you don't want to play, you can just enjoy it goes till the end of the song.)
+
+Note:
+I realized that even though this is not a bullet hell game, I'm still kind of destory game object frequntly and it may trigger the garbage collection. I had tried to make a version that the game controller generate bunch of note at the begining and just keep reusing them. But their always some minor problem there with the collider. I may includes that in another brach if I feel like that is pretty solid.

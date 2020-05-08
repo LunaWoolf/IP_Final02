@@ -100,6 +100,7 @@ MonoBehaviour:
   keyToPressed: 274
   noteType: D
   activator: {fileID: 0}
+  gc: {fileID: 0}
 --- !u!65 &6896734065887875881
 BoxCollider:
   m_ObjectHideFlags: 0

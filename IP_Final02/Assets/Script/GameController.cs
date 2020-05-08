@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public BeatScroller beatScro;// reference to the bat Scroller
     public static GameController instance;
 
-    public int curScore; 
+    public int curScore;
     public int scorePreNote = 100;
     public int curCombo = 0; // current combo
     public int highestCombo = 0; //keep track of the highest combo this turn
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     public Vector3 rightnotepos;
 
     //// reference to the four Activaor
-    public GameObject leftActivaor; 
+    public GameObject leftActivaor;
     public GameObject upActivaor;
     public GameObject downActivaor;
     public GameObject rightActivaor;
@@ -47,11 +47,11 @@ public class GameController : MonoBehaviour
     void Start()
     {
         instance = this;
-		sm = FindObjectOfType<SceneManage>();
-        sm.anim = anim; 
+        sm = FindObjectOfType<SceneManage>();
+        sm.anim = anim;
         theMusic.clip = sm.selectMusic.musicClip;// get the Music Clip from scene Manager 
         level = sm.level; // get the levle value from scene Manager 
-	}
+    }
 
     void FixedUpdate()
     {
@@ -64,21 +64,21 @@ public class GameController : MonoBehaviour
         if (!start)
         {
             // Start the Game by pressed any key
-			if (Input.anyKeyDown)
-			{
-				start = true;
-				beatScro.start = true;
-				theMusic.Play(); // Play the music once the game start 
-				if (level == 0) // Start to generate note depends on the level of difficulty
-				{
-					StartCoroutine(GenerateNoteEasy()); // Easy mode
-				}
-				else
-                { 
-					StartCoroutine(GenerateNoteHard());// Hard mode
+            if (Input.anyKeyDown)
+            {
+                start = true;
+                beatScro.start = true;
+                theMusic.Play(); // Play the music once the game start 
+                if (level == 0) // Start to generate note depends on the level of difficulty
+                {
+                    StartCoroutine(GenerateNoteEasy()); // Easy mode
+                }
+                else
+                {
+                    StartCoroutine(GenerateNoteHard());// Hard mode
                 }
 
-			}
+            }
         }
         else
         {
@@ -107,8 +107,8 @@ public class GameController : MonoBehaviour
     {
         while (start)
         {
-            
-            yield return new WaitForSeconds(beatScro.bpm/2); // Wait for each beat
+
+            yield return new WaitForSeconds(beatScro.bpm / 2); // Wait for each beat
             GameObject newNote = null;
             int random = Random.Range(0, 4); // make a random seed number that the generate based on
             switch (random)
@@ -135,8 +135,8 @@ public class GameController : MonoBehaviour
                     break;
 
             }
-            
-        } 
+
+        }
 
     }
 
@@ -207,7 +207,7 @@ public class GameController : MonoBehaviour
     public void NoteHit()
     {
         curCombo++; // plus combo
-        curScore += scorePreNote * curCombo; 
+        curScore += scorePreNote * curCombo;
         scoretext.GetComponent<Text>().text = "Score: " + curScore; // Set the text 
         combotext.GetComponent<Text>().text = "Combo: " + curCombo;
     }

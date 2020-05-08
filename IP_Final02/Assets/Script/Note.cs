@@ -8,7 +8,7 @@ public class Note : MonoBehaviour
     private bool canpressed; //the note is in the press zone and can be pressed
     public KeyCode keyToPressed; //Which key to press for this note
     public string noteType; //The type of the Note, There are four type (L - left, R - right, U- up, D - down)
-    public GameObject activator; 
+    public GameObject activator;
 
     void Start()
     {
@@ -28,10 +28,11 @@ public class Note : MonoBehaviour
         {
             if (canpressed)
             {
+                canpressed = false;
                 // if the key has been pressed when it's in the press zone, player gain points, and this will destory itself
                 GameController.instance.NoteHit();
-                this.gameObject.SetActive(false);
-                //Destroy(this.gameObject);
+                //this.gameObject.SetActive(false);
+                Destroy(this.gameObject);
             }
         }
     }
@@ -51,8 +52,8 @@ public class Note : MonoBehaviour
         if (other.tag == "Activator")
         {
             canpressed = false;
-            this.gameObject.SetActive(false);
-            //Destroy(this.gameObject); 
+            //this.gameObject.SetActive(false);
+            Destroy(this.gameObject); 
             GameController.instance.NoteMiss(); //Call function in GameController when miss the note
         }
     }
