@@ -94,12 +94,11 @@ public class GameController : MonoBehaviour
                 {
                     highestCombo = curCombo;
                 }
-                curScore = sm.score; // set the value of the scene Manager 
-                highestCombo = sm.combo;
+                sm.score = curScore; // set the value of the scene Manager 
+                sm.combo = highestCombo;
                 sm.ToEndScene(); // Move to end scene
             }
         }
-
     }
 
     // Generate Note for the Easy level, There will only be one note fall at each time for the this mode 
