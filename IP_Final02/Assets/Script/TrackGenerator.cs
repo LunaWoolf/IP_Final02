@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script is the trackGenerator that generate the track.
+//It will first generate 10 tiles and each times player move away from one tiles, it will add one to the front
+// and remove the last one.
 public class TrackGenerator : MonoBehaviour
 {
+    //List of tracks
     public Track[] tracks;
-    public Track firstTrack;
-    public List<GameObject> trackInScene;
+    public Track firstTrack; //first Track in the scene
+    public List<GameObject> trackInScene; //List of track currently in the scene
 
-    private Track previousTrack;
+    private Track previousTrack;// previous Track that has been placed
 
     public Vector3 spawnOrigin;
     public Vector3 spawnPos;
@@ -30,7 +34,6 @@ public class TrackGenerator : MonoBehaviour
             trackInScene.RemoveAt(0);
             Destroy(temp);
         }
-
     }
 
 
@@ -42,7 +45,6 @@ public class TrackGenerator : MonoBehaviour
         {
             PickSpawnTrack();
         }
-        
     }
 
     public void PickSpawnTrack()
@@ -59,7 +61,6 @@ public class TrackGenerator : MonoBehaviour
 
     Track PickNextTrack()
     {
-
         List<Track> nextTrackList = new List<Track>();
 
         Track nextTrack = null;
@@ -92,7 +93,6 @@ public class TrackGenerator : MonoBehaviour
                 nextTrackList.Add(tracks[i]);
             }
         }
-
 
         nextTrack = nextTrackList[Random.Range(0, nextTrackList.Count)];
         return nextTrack;

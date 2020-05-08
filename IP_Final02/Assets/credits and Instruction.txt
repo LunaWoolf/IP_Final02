@@ -1,0 +1,17 @@
+Credit:
+
+- All 2D art and 3D model are made by myself
+- The SpriteDefault shader I used is the unity builtin shader that edited by me in the project (I add the line "ZTest Always" to make 2d sprite always render in front of 3d meshes)
+
+- Music : 
+ハレハレヤ - 佑可猫
+光るなら - Goose House
+	  
+
+Instruction:
+
+This is a rhythm game. The original idea is to make something that is playful and also beautiful to just look at. The track is procedural generate and will be different each time, same as the note sheet.
+
+How to Play:
+
+Press the according arrow key when the arrows fall to the pink little box's area. The traveling of the camera has noting to do with the input, it's self-pathfinding. The only purpose of it is to make it looks beautiful and dynamtic. (If you don't want to play, you can just enjoy it goes till the end of the song.)

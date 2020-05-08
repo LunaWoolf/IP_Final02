@@ -30,7 +30,8 @@ public class Note : MonoBehaviour
             {
                 // if the key has been pressed when it's in the press zone, player gain points, and this will destory itself
                 GameController.instance.NoteHit();
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
+                //Destroy(this.gameObject);
             }
         }
     }
@@ -50,7 +51,8 @@ public class Note : MonoBehaviour
         if (other.tag == "Activator")
         {
             canpressed = false;
-            Destroy(this.gameObject); 
+            this.gameObject.SetActive(false);
+            //Destroy(this.gameObject); 
             GameController.instance.NoteMiss(); //Call function in GameController when miss the note
         }
     }

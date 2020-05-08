@@ -9,10 +9,12 @@ public class StartScene : MonoBehaviour
     public GameObject chooseMusic; // the music play Choose 
     public GameObject chooseDifficulty; // Difficulty player Choose
     SceneManage sm; // reference to the Scene Manager
+    public Animator transanim; // The scene transformation animator
 
     void Start()
     {
         sm = FindObjectOfType<SceneManage>(); // set Scene Manager
+        sm.anim = transanim; // pass the animator value to the scene Manage
         chooseDifficulty.SetActive(false); 
     }
 

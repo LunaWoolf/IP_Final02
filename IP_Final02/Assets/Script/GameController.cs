@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//This is the script for the Game Controller 
+//This is the script for the Game Controller. It will generate the note at runtime 
+//and keep track of the score and the combo
 public class GameController : MonoBehaviour
 {
     public AudioSource theMusic; // The Music that is played during the game
@@ -41,6 +42,7 @@ public class GameController : MonoBehaviour
 
     SceneManage sm;// reference to Scene Manager
     int level; // level of difficulty
+    bool end = false;
 
     void Start()
     {
@@ -72,7 +74,7 @@ public class GameController : MonoBehaviour
 					StartCoroutine(GenerateNoteEasy()); // Easy mode
 				}
 				else
-				{
+                { 
 					StartCoroutine(GenerateNoteHard());// Hard mode
                 }
 
@@ -84,8 +86,9 @@ public class GameController : MonoBehaviour
             RenderSettings.skybox.SetFloat("_AtmosphereThickness", Mathf.Sin(Time.time * Mathf.Deg2Rad * 100 * 0.2f) + 2f);
 
             //if music finished playing, end the game and goes to the end Scne
-            if (!theMusic.isPlaying)
+            if (!theMusic.isPlaying && !end)
             {
+                end = true;
                 // check is current combo larger than the current highestCombo, if true, change the current highestCombo to current Combo
                 if (curCombo > highestCombo)
                 {
@@ -95,18 +98,6 @@ public class GameController : MonoBehaviour
                 highestCombo = sm.combo;
                 sm.ToEndScene(); // Move to end scene
             }
-        }
-
-        //Test
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (curCombo > highestCombo)
-            {
-                highestCombo = curCombo;
-            }
-            sm.score = curScore;
-            sm.combo = highestCombo;
-            sm.ToEndScene();
         }
 
     }

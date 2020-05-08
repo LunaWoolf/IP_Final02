@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf974f52f1b041a8b3d919f1909fafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 142543593}
+  transanim: {fileID: 142543593}
   scoreText: {fileID: 3651484}
   comboText: {fileID: 1244734856}
 --- !u!4 &1851658218

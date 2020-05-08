@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // This script is for the note sheet that contains notes(arrows) that falls down
+//The fall down start when the game start 
 public class BeatScroller : MonoBehaviour
 {
     public float bpm; //the beat pre minute of the music
