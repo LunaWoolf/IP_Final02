@@ -211,7 +211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &318379800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695687868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.009, y: 5.36, z: 0}
+  m_LocalPosition: {x: -2.84, y: 5.36, z: 0}
   m_LocalScale: {x: 0.06842476, y: 0.06842476, z: 0.06842476}
   m_Children: []
   m_Father: {fileID: 697189834}
@@ -409,7 +409,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695687868}
-  m_Text: Press Any Button
+  m_Text: Press Any Button To Start
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1006,6 +1006,7 @@ MonoBehaviour:
   upActivaor: {fileID: 1586050797}
   downActivaor: {fileID: 1859813306}
   rightActivaor: {fileID: 1685757254}
+  instruction: {fileID: 695687868}
   noteGenerateHeight: {x: 0, y: 6, z: 0}
   scoretext: {fileID: 1162472532}
   combotext: {fileID: 494219384}
@@ -1963,6 +1964,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 697189834}
     m_Modifications:
+    - target: {fileID: 1080601851230807846, guid: 9ff3397949fae416395cfc1944ef8635,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080601851230807846, guid: 9ff3397949fae416395cfc1944ef8635,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080601851230807846, guid: 9ff3397949fae416395cfc1944ef8635,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080601851230807846, guid: 9ff3397949fae416395cfc1944ef8635,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3093991481311516850, guid: 9ff3397949fae416395cfc1944ef8635,
         type: 3}
       propertyPath: m_Name
@@ -2047,6 +2068,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093991481311516854, guid: 9ff3397949fae416395cfc1944ef8635,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

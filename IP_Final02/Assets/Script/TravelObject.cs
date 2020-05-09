@@ -46,7 +46,7 @@ public class TravelObject : MonoBehaviour
         if (other.tag == "TurnLeftPoint")
         {
             trackGenerattor.PickSpawnTrack();// Generate a new Track in front of the list
-            StartCoroutine(Rotate(Vector3.up * -90, 0.8f));
+            StartCoroutine(Rotate(Vector3.up * -90, 0.8f)); 
         }
         
        

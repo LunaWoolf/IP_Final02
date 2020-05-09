@@ -36,13 +36,8 @@ public class Note : MonoBehaviour
                 canpressed = false;
                 // if the key has been pressed when it's in the press zone, player gain points, and this will destory itself
                 GameController.instance.NoteHit();
-                //_______________________________________________________________________________________________________
-              
-                //onsheet = false;
-               
                 AddNotebackToList();
-                //this.gameObject.SetActive(false);
-                //Destroy(this.gameObject);
+               
             }
         }
     }
@@ -62,12 +57,7 @@ public class Note : MonoBehaviour
         if (other.tag == "Activator")
         {
             canpressed = false;
-
-            //_______________________________________________________________________________________________________
-            
             AddNotebackToList();
-            //this.gameObject.SetActive(false);
-            //Destroy(this.gameObject); 
             GameController.instance.NoteMiss(); //Call function in GameController when miss the note
         }
     }
@@ -77,28 +67,23 @@ public class Note : MonoBehaviour
     {
         this.GetComponent<BoxCollider>().enabled = false;
         this.gameObject.transform.position = new Vector3(0, 0, 0);
-
         switch (noteType)
         {
             
             case "L":
                 gc.noteleftList.Add(this.gameObject);
-                //this.gameObject.transform.position = gc.leftnotepos - gc.noteGenerateHeight;
                 break;
             
             case "U":
                 gc.noteupList.Add(this.gameObject);
-                //this.gameObject.transform.position = gc.upnotepos - gc.noteGenerateHeight;
                 break;
            
             case "D":
                 gc.notedownList.Add(this.gameObject);
-                //this.gameObject.transform.position = gc.downnotepos - gc.noteGenerateHeight;
                 break;
            
             case "R":
                 gc.noterightList.Add(this.gameObject);
-                //this.gameObject.transform.position = gc.rightnotepos - gc.noteGenerateHeight;
                 break;
 
         }

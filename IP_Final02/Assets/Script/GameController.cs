@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//This is the script for the Game Controller. It will generate the note at runtime 
+//This is the script for the Game Controller. It will generate the notes at the start, reuse them during the game
 //and keep track of the score and the combo
 public class GameController : MonoBehaviour
 {
@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
     public GameObject upActivaor;
     public GameObject downActivaor;
     public GameObject rightActivaor;
+    //The instruction text game object 
+    public GameObject instruction;
     // The Height that note being generate
     public Vector3 noteGenerateHeight;
 
@@ -44,6 +46,7 @@ public class GameController : MonoBehaviour
     int level; // level of difficulty
     bool end = false;
 
+    //List for each type of note that has been generate at the begining of the game.
     public List<GameObject> noteleftList;
     public List<GameObject> noterightList;
     public List<GameObject> noteupList;
@@ -56,7 +59,7 @@ public class GameController : MonoBehaviour
         sm.anim = anim;
         theMusic.clip = sm.selectMusic.musicClip;// get the Music Clip from scene Manager 
         level = sm.level; // get the levle value from scene Manager
-        GenerateNoteStart();
+        GenerateNoteStart(); // Generate note that will be reuse in the game at the start
 
     }
 
@@ -84,6 +87,7 @@ public class GameController : MonoBehaviour
                 {
                     StartCoroutine(GenerateNoteHard());// Hard mode
                 }
+                Destroy(instruction); // Destory is the instruction object about the game start 
 
             }
         }
@@ -109,11 +113,13 @@ public class GameController : MonoBehaviour
 
     }
 
+    //Generate notes start 
     public void GenerateNoteStart()
     {
         GameObject note = null;
         if (level == 0)
         {
+            // 6 notes of each type for the easy mode 
             for (int i = 0; i < 6; i++)
             {
                 note = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
@@ -134,6 +140,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            // 10 notes of each type for the hard mode 
             for (int i = 0; i < 10; i++)
             {
                 note = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
@@ -156,8 +163,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    //Try to generate a lot of note at start and reuse them. but there is always some minor error occurs with the collider
-   // Generate Note for the Easy level, There will only be one note fall at each time for the this mode 
+   // Set a random number that determine which note is going be appear at each beat for the easy mode
     private IEnumerator GenerateNoteEasy()
     {
         while (start)
@@ -191,7 +197,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    // Generate Note for the Hard level, There will be two note fall at the same time for the this mode 
+    // Set a random number that determine which two note is going be appear at each beat for the hard mode
     private IEnumerator GenerateNoteHard()
     {
         while (start)

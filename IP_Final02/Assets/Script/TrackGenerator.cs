@@ -11,16 +11,11 @@ public class TrackGenerator : MonoBehaviour
     public Track[] tracks;
     public Track firstTrack; //first Track in the scene
     public List<GameObject> trackInScene; //List of track currently in the scene
-
     private Track previousTrack;// previous Track that has been placed
-
     //public Vector3 spawnOrigin;
     public Vector3 spawnPos; // The position to spawn next tiles
-
     public int spawnamount = 10; // The spawn amount at first.
-
     public TravelObject travelObject; //the camera object that travel through the track
-
     public void Update()
     {
         // if there is more than 11 track, remove the last one
