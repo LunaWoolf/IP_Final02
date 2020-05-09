@@ -8,13 +8,15 @@ Credit:
 光るなら - Goose House
 	  
 
-Instruction:
+Design Brief:
 
-This is a rhythm game. The original idea is to make something that is playful and also beautiful to just look at. The track is procedural generate and will be different each time, same as the note sheet.
+This is a rhythm game. The original idea is to make something that is playful and also beautiful to just look at. The track is procedural generate and will be different each time, same as the note sheet. I hope you enjoy this game.
 
 How to Play:
-
-Press the according arrow key when the arrows fall to the pink little box's area. The traveling of the camera has noting to do with the input, it's self-pathfinding. The only purpose of it is to make it looks beautiful and dynamtic. (If you don't want to play, you can just enjoy it goes till the end of the song.)
+Please start from the "Start Scene"
+Press the according arrow key when the arrows fall to the pink little box's area. The traveling of the camera has noting to do with the input, it's self-pathfinding. It makes the background of the game looks beautiful and dynamtic. (If you don't want to play, you can just enjoy it goes till the end of the song.)
 
 Note:
-I realized that even though this is not a bullet hell game, I'm still kind of destory game object frequntly and it may trigger the garbage collection. I had tried to make a version that the game controller generate bunch of note at the begining and just keep reusing them. But their always some minor problem there with the collider. I may includes that in another brach if I feel like that is pretty solid.
+There are two branches in this project. Please pull from the "Reuse-Note" branch for the latest version, Not the mater branch. Thank you.
+The "master" branch generate notes every beat and destroy the gameObject after it has been hit/miss.
+The "Reuse-note" brach generate a list of different types of notes at beginning and reuse them. Therefore it won't cause garbage collection and make the game run smoother.

@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
 
     SceneManage sm;// reference to Scene Manager
     int level; // level of difficulty
-    bool end = false;
+    bool end = false; //is the game end
 
     //List for each type of note that has been generate at the begining of the game.
     public List<GameObject> noteleftList;
@@ -213,22 +213,27 @@ public class GameController : MonoBehaviour
                     GenerateLeftNote();
                     GenerateUpNote();
                     break;
+                //Generate left & down note
                 case 1:
                     GenerateLeftNote();
                     GenerateDownNote();
                     break;
+                //Generate left & right note
                 case 2:
                     GenerateLeftNote();
                     GenerateRightNote();
                     break;
+                //Generate up & down note
                 case 3:
                     GenerateUpNote();
                     GenerateDownNote();
                     break;
+                //Generate up & right note
                 case 4:
                     GenerateUpNote();
                     GenerateRightNote();
                     break;
+                //Generate down & right note
                 case 5:
                     GenerateDownNote();
                     GenerateRightNote();
@@ -239,6 +244,8 @@ public class GameController : MonoBehaviour
 
     }
 
+    //Move the first element of the note list to to it's position
+    //make it interactable and then remove it from the list
     void GenerateLeftNote()
     {
         GameObject newNote = null;
@@ -249,6 +256,7 @@ public class GameController : MonoBehaviour
         newNote.GetComponent<Note>().onsheet = true;
     }
 
+    //same as the function above, but for the up note
     void GenerateUpNote()
     {
         GameObject newNote = null;
@@ -259,6 +267,7 @@ public class GameController : MonoBehaviour
         newNote.GetComponent<Note>().onsheet = true;
     }
 
+    //same as the function above, but for the down note
     void GenerateDownNote()
     {
         GameObject newNote = null;
@@ -269,6 +278,7 @@ public class GameController : MonoBehaviour
         newNote.GetComponent<Note>().onsheet = true;
     }
 
+    //same as the function above, but for the right note
     void GenerateRightNote()
     {
         GameObject newNote = null;
