@@ -9,10 +9,13 @@ public class Note : MonoBehaviour
     public KeyCode keyToPressed; //Which key to press for this note
     public string noteType; //The type of the Note, There are four type (L - left, R - right, U- up, D - down)
     public GameObject activator;
+    public GameController gc;
+    public bool onsheet;
 
     void Start()
     {
         string activatorName = "Activator_" + noteType; // Find the Activator base on the type of note
+        gc = GameObject.Find("GameController").GetComponent<GameController>();
         activator = GameObject.Find(activatorName);
     }
 
@@ -20,6 +23,8 @@ public class Note : MonoBehaviour
     {
         // Make sure the x position is always the same as activator
         transform.position = new Vector3(activator.transform.position.x, transform.position.y, transform.position.z);
+        
+
     }
 
     void Update()
@@ -31,8 +36,13 @@ public class Note : MonoBehaviour
                 canpressed = false;
                 // if the key has been pressed when it's in the press zone, player gain points, and this will destory itself
                 GameController.instance.NoteHit();
+                //_______________________________________________________________________________________________________
+              
+                //onsheet = false;
+               
+                AddNotebackToList();
                 //this.gameObject.SetActive(false);
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
             }
         }
     }
@@ -52,9 +62,45 @@ public class Note : MonoBehaviour
         if (other.tag == "Activator")
         {
             canpressed = false;
+
+            //_______________________________________________________________________________________________________
+            
+            AddNotebackToList();
             //this.gameObject.SetActive(false);
-            Destroy(this.gameObject); 
+            //Destroy(this.gameObject); 
             GameController.instance.NoteMiss(); //Call function in GameController when miss the note
+        }
+    }
+
+    //Try to generate a lot of note at start and reuse them. but there is always some minor error occurs with the collider
+    void AddNotebackToList()
+    {
+        this.GetComponent<BoxCollider>().enabled = false;
+        this.gameObject.transform.position = new Vector3(0, 0, 0);
+
+        switch (noteType)
+        {
+            
+            case "L":
+                gc.noteleftList.Add(this.gameObject);
+                //this.gameObject.transform.position = gc.leftnotepos - gc.noteGenerateHeight;
+                break;
+            
+            case "U":
+                gc.noteupList.Add(this.gameObject);
+                //this.gameObject.transform.position = gc.upnotepos - gc.noteGenerateHeight;
+                break;
+           
+            case "D":
+                gc.notedownList.Add(this.gameObject);
+                //this.gameObject.transform.position = gc.downnotepos - gc.noteGenerateHeight;
+                break;
+           
+            case "R":
+                gc.noterightList.Add(this.gameObject);
+                //this.gameObject.transform.position = gc.rightnotepos - gc.noteGenerateHeight;
+                break;
+
         }
     }
 }

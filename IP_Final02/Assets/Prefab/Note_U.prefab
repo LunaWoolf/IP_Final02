@@ -181,6 +181,8 @@ MonoBehaviour:
   keyToPressed: 273
   noteType: U
   activator: {fileID: 0}
+  gc: {fileID: 0}
+  onsheet: 0
 --- !u!65 &45862106245630974
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1009,6 +1009,10 @@ MonoBehaviour:
   noteGenerateHeight: {x: 0, y: 6, z: 0}
   scoretext: {fileID: 1162472532}
   combotext: {fileID: 494219384}
+  noteleftList: []
+  noterightList: []
+  noteupList: []
+  notedownList: []
 --- !u!4 &1450265112
 Transform:
   m_ObjectHideFlags: 0
@@ -1869,6 +1873,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 688286915058224734, guid: 7e1d53f5c8c7c40e09964929a610b4ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 688286915058224735, guid: 7e1d53f5c8c7c40e09964929a610b4ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1963,6 +1972,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093991481311516850, guid: 9ff3397949fae416395cfc1944ef8635,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3093991481311516851, guid: 9ff3397949fae416395cfc1944ef8635,
         type: 3}
@@ -2119,6 +2133,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6151198288608981735, guid: 53cb5f92526c74487ba9a721a0abf2a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6151198288608981729, guid: 53cb5f92526c74487ba9a721a0abf2a7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 53cb5f92526c74487ba9a721a0abf2a7, type: 3}
@@ -2148,6 +2167,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7745871769235419964, guid: 494e29f6f86f643eabacc00eed68b108,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7745871769235419965, guid: 494e29f6f86f643eabacc00eed68b108,
         type: 3}

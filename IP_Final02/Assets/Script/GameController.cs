@@ -44,13 +44,20 @@ public class GameController : MonoBehaviour
     int level; // level of difficulty
     bool end = false;
 
+    public List<GameObject> noteleftList;
+    public List<GameObject> noterightList;
+    public List<GameObject> noteupList;
+    public List<GameObject> notedownList;
+
     void Start()
     {
         instance = this;
         sm = FindObjectOfType<SceneManage>();
         sm.anim = anim;
         theMusic.clip = sm.selectMusic.musicClip;// get the Music Clip from scene Manager 
-        level = sm.level; // get the levle value from scene Manager 
+        level = sm.level; // get the levle value from scene Manager
+        GenerateNoteStart();
+
     }
 
     void FixedUpdate()
@@ -99,9 +106,58 @@ public class GameController : MonoBehaviour
                 sm.ToEndScene(); // Move to end scene
             }
         }
+
     }
 
-    // Generate Note for the Easy level, There will only be one note fall at each time for the this mode 
+    public void GenerateNoteStart()
+    {
+        GameObject note = null;
+        if (level == 0)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                note = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = leftnotepos - noteGenerateHeight;
+                noteleftList.Add(note);
+                note = Instantiate(upkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = upnotepos - noteGenerateHeight;
+                noteupList.Add(note);
+                note = Instantiate(downkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = downnotepos - noteGenerateHeight;
+                notedownList.Add(note);
+                note = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = rightnotepos - noteGenerateHeight;
+                noterightList.Add(note);
+
+            }
+
+        }
+        else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                note = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = leftnotepos - noteGenerateHeight;
+                noteleftList.Add(note);
+                note = Instantiate(upkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = upnotepos - noteGenerateHeight;
+                noteupList.Add(note);
+                note = Instantiate(downkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = downnotepos - noteGenerateHeight;
+                notedownList.Add(note);
+                note = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
+                note.transform.position = rightnotepos - noteGenerateHeight;
+                noterightList.Add(note);
+
+            }
+
+        }
+     
+
+    }
+
+    //Try to generate a lot of note at start and reuse them. but there is always some minor error occurs with the collider
+   // Generate Note for the Easy level, There will only be one note fall at each time for the this mode 
     private IEnumerator GenerateNoteEasy()
     {
         while (start)
@@ -114,23 +170,19 @@ public class GameController : MonoBehaviour
             {
                 //Generate left note
                 case 0:
-                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = leftnotepos;
+                    GenerateLeftNote();
                     break;
                 //Generate up note
                 case 1:
-                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = upnotepos;
+                    GenerateUpNote();
                     break;
                 //Generate down note
                 case 2:
-                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = downnotepos;
+                    GenerateDownNote();
                     break;
                 //Generate right note
                 case 3:
-                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = rightnotepos;
+                    GenerateRightNote();
                     break;
 
             }
@@ -152,46 +204,77 @@ public class GameController : MonoBehaviour
             {
                 //Generate left & up note
                 case 0:
-                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = leftnotepos;
-                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = upnotepos;
+                    GenerateLeftNote();
+                    GenerateUpNote();
                     break;
                 case 1:
-                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = leftnotepos;
-                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = downnotepos;
+                    GenerateLeftNote();
+                    GenerateDownNote();
                     break;
                 case 2:
-                    newNote = Instantiate(leftkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = leftnotepos;
-                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = rightnotepos;
+                    GenerateLeftNote();
+                    GenerateRightNote();
                     break;
                 case 3:
-                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = upnotepos;
-                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = downnotepos;
+                    GenerateUpNote();
+                    GenerateDownNote();
                     break;
                 case 4:
-                    newNote = Instantiate(upkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = upnotepos;
-                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = rightnotepos;
+                    GenerateUpNote();
+                    GenerateRightNote();
                     break;
                 case 5:
-                    newNote = Instantiate(downkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = downnotepos;
-                    newNote = Instantiate(rightkey, noteSheet.GetComponent<Transform>());
-                    newNote.transform.position = rightnotepos;
+                    GenerateDownNote();
+                    GenerateRightNote();
                     break;
             }
 
         }
 
     }
+
+    void GenerateLeftNote()
+    {
+        GameObject newNote = null;
+        newNote = noteleftList[0];
+        newNote.GetComponent<BoxCollider>().enabled = true;
+        noteleftList.RemoveAt(0);
+        newNote.transform.position = leftnotepos;
+        newNote.GetComponent<Note>().onsheet = true;
+    }
+
+    void GenerateUpNote()
+    {
+        GameObject newNote = null;
+        newNote = noteupList[0];
+        newNote.GetComponent<BoxCollider>().enabled = true;
+        noteupList.RemoveAt(0);
+        newNote.transform.position = upnotepos;
+        newNote.GetComponent<Note>().onsheet = true;
+    }
+
+    void GenerateDownNote()
+    {
+        GameObject newNote = null;
+        newNote = notedownList[0];
+        newNote.GetComponent<BoxCollider>().enabled = true;
+        notedownList.RemoveAt(0);
+        newNote.transform.position = downnotepos;
+        newNote.GetComponent<Note>().onsheet = true;
+    }
+
+    void GenerateRightNote()
+    {
+        GameObject newNote = null;
+        newNote = noterightList[0];
+        newNote.GetComponent<BoxCollider>().enabled = true;
+        noterightList.RemoveAt(0);
+        newNote.transform.position = rightnotepos;
+        newNote.GetComponent<Note>().onsheet = true;
+    }
+
+
+    
 
     // Update the current position for the note to be generate. Which is the position of the Activator plus the height
     public void NotepositionUpdate()
