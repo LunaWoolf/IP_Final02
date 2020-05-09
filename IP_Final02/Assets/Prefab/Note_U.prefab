@@ -181,7 +181,6 @@ MonoBehaviour:
   keyToPressed: 273
   noteType: U
   activator: {fileID: 0}
-  gc: {fileID: 0}
 --- !u!65 &45862106245630974
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -190,7 +189,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7745871769235419964}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.2}
